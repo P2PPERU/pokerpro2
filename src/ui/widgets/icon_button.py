@@ -5,6 +5,8 @@ Botón con iconos SVG estilizados
 from PySide6.QtWidgets import QPushButton, QGraphicsColorizeEffect
 from PySide6.QtCore import QSize, Qt, QPropertyAnimation, Property, QEasingCurve
 from PySide6.QtGui import QIcon, QColor
+from src.utils.logger import log_message
+
 
 import sys
 import os
@@ -58,8 +60,11 @@ class IconButton(QPushButton):
         self.setIconSize(QSize(size - 4, size - 4))  # Icono un poco más pequeño que el botón
         
         # Cargar icono si se proporcionó
-        if icon_path:
+        if icon_path and os.path.exists(icon_path):
             self.setIcon(QIcon(icon_path))
+        else:
+            self.setIcon(QIcon())  # evita ícono roto
+            log_message(f"[IconButton] Icono no encontrado o inválido: {icon_path}", level="warning")
         
         # Efecto de colorización para el icono
         self._color_effect = QGraphicsColorizeEffect(self)
@@ -152,9 +157,13 @@ class IconButton(QPushButton):
         super().mouseReleaseEvent(event)
     
     def set_icon(self, icon_path):
-        """Cambia el icono del botón"""
+        """Cambia el icono del botón con validación"""
         self._icon_path = icon_path
-        self.setIcon(QIcon(icon_path))
+        if icon_path and os.path.exists(icon_path):
+            self.setIcon(QIcon(icon_path))
+        else:
+            self.setIcon(QIcon())
+            log_message(f"[IconButton] Icono no encontrado o inválido al cambiar: {icon_path}", level="warning")
     
     def set_colors(self, normal=None, hover=None, pressed=None):
         """Cambia los colores del icono"""

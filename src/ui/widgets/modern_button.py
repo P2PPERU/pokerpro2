@@ -5,6 +5,8 @@ Botón moderno con efectos visuales y estados mejorados
 from PySide6.QtWidgets import QPushButton, QGraphicsOpacityEffect
 from PySide6.QtCore import QPropertyAnimation, Property, QEasingCurve, Signal, Qt
 from PySide6.QtGui import QIcon, QColor, QPainter, QFont
+from src.utils.logger import log_message
+
 
 import sys
 import os
@@ -53,9 +55,13 @@ class ModernButton(QPushButton):
         # Aplicar icono si se proporcionó
         if icon:
             if isinstance(icon, str):
-                self.setIcon(QIcon(icon))
+                if os.path.exists(icon):
+                   self.setIcon(QIcon(icon))
+                else:
+                    self.setIcon(QIcon())  # evita ícono roto
+                    log_message(f"[ModernButton] Icono no encontrado o inválido: {icon}", level="warning")
             else:
-                self.setIcon(icon)
+                 self.setIcon(icon)
         
         # Aplicar hoja de estilos
         self.setStyleSheet(generate_component_stylesheet("ModernButton"))

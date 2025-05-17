@@ -49,17 +49,31 @@ def load_fonts():
 
 def verify_resources():
     """Verifica que existan los recursos necesarios"""
-    # Verificar directorio de iconos
-    icons_dir = os.path.join("assets", "icons")
-    if not os.path.exists(icons_dir):
-        os.makedirs(icons_dir, exist_ok=True)
-        log_message("Directorio de iconos creado", level='warning')
-    
-    # Verificar directorio de fuentes
-    fonts_dir = os.path.join("assets", "fonts")
-    if not os.path.exists(fonts_dir):
-        os.makedirs(fonts_dir, exist_ok=True)
-        log_message("Directorio de fuentes creado", level='warning')
+    # Verificar carpetas base
+    os.makedirs("assets/icons", exist_ok=True)
+    os.makedirs("assets/fonts", exist_ok=True)
+
+    log_message("Verificando recursos...", level="info")
+
+    # Lista de íconos requeridos
+    required_icons = [
+        "dropdown_arrow.svg",
+        "check.svg",
+        "user.svg",
+        "lock.svg",
+        "home.svg",
+        "history.svg",
+        "settings.svg",
+        "log.svg",
+        "refresh.svg",
+        "analyze.svg"
+    ]
+
+    for icon in required_icons:
+        path = os.path.join("assets", "icons", icon)
+        if not os.path.exists(path):
+            log_message(f"⚠️  FALTA recurso: {icon} en assets/icons/", level="warning")
+
 
 def main():
     """Función principal que inicia la aplicación"""

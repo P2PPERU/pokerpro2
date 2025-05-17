@@ -405,10 +405,14 @@ def get_resource_path(folder, filename):
     return os.path.join(base_path, filename)
 
 def get_dropdown_arrow_path():
-    """Obtiene la ruta al icono de flecha para QComboBox"""
-    # Por ahora devolvemos un valor ficticio
-    # En la implementación real deberás tener estos iconos
-    return get_resource_path("icons", "dropdown_arrow.svg")
+    """Ruta al ícono de flecha para QComboBox"""
+    path = get_resource_path("icons", "dropdown_arrow.svg")
+    if os.path.exists(path):
+        return path
+    else:
+        print("[WARNING] Icono 'dropdown_arrow.svg' no encontrado.")
+        return ""  # Evita que se rompa el QSS
+
 
 def get_checkbox_path():
     """Obtiene la ruta al icono de checkmark para QCheckBox"""
