@@ -1,0 +1,26 @@
+﻿# Entorno y configuración
+.env
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.class
+
+# Archivos de configuración con credenciales
+config/credentials.json
+
+# Directorios de caché
+capturas/
+.idea/
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Archivos temporales
+*.tmp
+.DS_Store
+
+# Archivos generados
+*.pyc
