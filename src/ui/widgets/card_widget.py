@@ -38,6 +38,7 @@ class CardWidget(QFrame):
         self._show_shadow = show_shadow
         self._elevation = elevation
         self._hover_enabled = True
+        self._current_elevation = float(elevation)
         
         # Configurar objeto
         self.setObjectName("card")

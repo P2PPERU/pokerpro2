@@ -262,7 +262,7 @@ class MainWindow(QMainWindow):
         user_info_layout.addWidget(avatar_label)
         
         # Nombre de usuario
-        username_label = QLabel(user_data.get('username', 'Usuario'))
+        username_label = QLabel(self.user_data.get('username', 'Usuario'))
         username_label.setStyleSheet(f"color: {get_color('text_primary')}; font-weight: bold;")
         user_info_layout.addWidget(username_label)
         user_info_layout.addStretch()
@@ -270,7 +270,7 @@ class MainWindow(QMainWindow):
         user_layout.addLayout(user_info_layout)
         
         # Tipo de cuenta
-        account_type = "Invitado" if user_data.get('guest_mode', False) else "Usuario"
+        account_type = "Invitado" if self.user_data.get('guest_mode', False) else "Usuario"
         account_label = QLabel(f"Tipo: {account_type}")
         account_label.setStyleSheet(f"color: {get_color('text_secondary')}; font-size: 12px;")
         user_layout.addWidget(account_label)

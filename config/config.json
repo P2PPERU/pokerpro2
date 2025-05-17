@@ -17,6 +17,11 @@
     "tema": "dark",
     "idioma_ocr": "multilingual",
     "mostrar_dialogo_copia": false,
+    "ui_animations": true,
+    "ui_sidebar_visible": true,
+    "ui_compact_mode": false,
+    "ui_font_size": "medium",
+    "ui_card_elevation": 2,
     "stats_seleccionadas": {
         "vpip": true,
         "pfr": true,
